@@ -111,13 +111,29 @@
     \begin{align}
       f_{R} (r) =& \\
       =& \int_{-\infty}^{\infty} f_{R,S}(r,s) ds \\
-      =& \int_{-\infty}^{\infty} n(n-1)f(s)f(r+s)(F(r+s) - F(s))^{n-2} (r,s) ds \\
-      =& n(n-1)\int_{-\infty}^{\infty} f(s)f(r+s)(F(r+s) - F(s))^{n-2} (r,s) ds \\
+      =& \int_{-\infty}^{\infty} n(n-1)f(s)f(r+s)(F(r+s) - F(s))^{n-2} ds \\
+      =& n(n-1)\int_{-\infty}^{\infty} f(s)f(r+s)(F(r+s) - F(s))^{n-2} ds \\
     \end{align}
     \subsection{Particularización para $X_i \sim Exp(1)$}
 
       \paragraph{}
       [TODO ]
+
+      \begin{align}
+        X_i \sim& Exp(1)\\
+        f_{X_{i}}(x) =& e^{-x}\\
+        F_{X_{i}}(x) =& 1-e^{-x} \\
+      \end{align}
+
+      \begin{align}
+        f_{R} (r) =&\\
+        =& \int_{-\infty}^{\infty} f_{R,S}(r,s) ds \\
+        =& n(n-1)\int_{0}^{\infty} f(s)f(r+s)(F(r+s) - F(s))^{n-2} ds \\
+        =& n(n-1)\int_{0}^{\infty} e^{-s}e^{-(r+s)}((1-e^{-(r+s)}) - (1-e^{-s}))^{n-2} ds \\
+        =& n(n-1)e^{-r}\int_{0}^{\infty} e^{-2s}( e^{-s} - e^{-(r+s)})^{n-2} ds \\
+        =& (n-1)e^{-r}e^{-r(-2 + n)} (e^r -1)^{-2 + n} \\
+        =& (n-1)e^{-2r(-2 + n) r} (e^r -1)^{-2 + n}
+      \end{align}
 
   \section{Distribuciones del rango y la mediana para la distribución ordenada generada por $X_i \sim U\{1,2,3\} \ \forall i  \in \{1,...,4\}$}
   \label{sec:e3}
@@ -125,6 +141,58 @@
     \paragraph{}
     [TODO]
 
+    \subsection{Rango}
+
+
+    \begin{table}[H]
+      \centering
+      \begin{tabular}{c | c  c  c | c}
+        $X_{(1)},X_{(4)}$ & 1               & 2               & 3               &                 \\ \hline
+        1                 & $\frac{1}{81}$  & $\frac{14}{81}$ & $\frac{50}{81}$ & $\frac{65}{81}$ \\
+        2                 & 0               & $\frac{1}{81}$  & $\frac{14}{81}$ & $\frac{15}{81}$ \\
+        3                 & 0               & 0               & $\frac{1}{81}$  & $\frac{1}{81}$  \\ \hline
+                          &  $\frac{1}{81}$ & $\frac{15}{81}$ &                 & 1
+      \end{tabular}
+      \caption{}
+      \label{}
+    \end{table}
+
+    \begin{table}[H]
+      \centering
+      \begin{tabular}{ c | c c c |}
+        Valores       & 0             & 1             & 2 \\ \hline
+        Probabilidad  & $\frac{3}{81}$  & $\frac{28}{81}$ & $\frac{50}{81}$
+      \end{tabular}
+      \caption{}
+      \label{}
+
+    \end{table}
+
+    \subsection{Mediana}
+
+
+    \begin{table}[H]
+      \centering
+      \begin{tabular}{c | c  c  c | c}
+        $X_{(2)},X_{(3)}$ & 1               & 2               & 3               &                 \\ \hline
+        1                 & $\frac{9}{81}$  & $\frac{18}{81}$ & $\frac{6}{81}$  &$\frac{39}{81}$  \\
+        2                 & 0               & $\frac{21}{81}$ & $\frac{18}{81}$ & $\frac{27}{81}$ \\
+        3                 & 0               & 0               & $\frac{9}{81}$  & $\frac{9}{81}$  \\ \hline
+                          & $\frac{9}{81}$  & $\frac{27}{81}$ & $\frac{39}{81}$ & 1
+      \end{tabular}
+      \caption{}
+      \label{}
+    \end{table}
+
+    \begin{table}[H]
+      \centering
+      \begin{tabular}{ c | c c c c c|}
+        Valores       & 1               & $\frac{3}{2}$   & 2               & $\frac{5}{2}$   & 3               \\ \hline
+        Probabilidad  & $\frac{9}{81}$  & $\frac{18}{81}$ & $\frac{27}{81}$ & $\frac{18}{81}$ & $\frac{9}{81}$
+      \end{tabular}
+      \caption{}
+      \label{}
+    \end{table}
   %-----------------------------
   %  Bibliographic references
   %-----------------------------
