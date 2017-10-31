@@ -36,7 +36,40 @@
     \paragraph{}
     [TODO ]
 
+    \begin{align}
+      F_{(X_{(1)}, X_{(n)})} (x,y) =& \\
+      =& P(X_{(1)} < x, X_{(n)} < y) \\
+      =& P(X_{(n)} < y) - P(x < X_{(1)}, X_{(n)} < y) \\
+      =& P(X_{(n)} < y) - P(x < X_{(1)} < X_{(n)} < y) \\
+      =& P(X_{1} < y) * ... * P(X_{n} < y) - P(x < X_1 < y) * ... * P(x < X_n < y) \\
+      =& F(y) * ... *F(y)  - (F(y)-F(x)) * ... * (F(y)-F(x)) \\
+      =& F(y)^n - (F(y)-F(x))^n
+    \end{align}
+
+    \begin{align}
+      f_{(X_{(1)}, X_{(n)})} (x,y) =& \\
+      =& \frac{\partial^2}{\partial x \partial y}F_{(X_{(1)}, X_{(n)})} (x,y) \\
+      =& \frac{\partial}{\partial x}( \frac{\partial}{\partial y} F(y)^n - (F(y)-F(x))^n) \\
+      =& \frac{\partial}{\partial x}( n (F(y)^{n-1}*f(y) - (F(y)-F(x))^{n-1}*f(y))) \\
+      =& \frac{\partial}{\partial x}( -n (F(y)-F(x))^{n-1}*f(y))) \\
+      =& n(n-1)f(x)f(y)(F(y) - F(x))^{n-2}
+    \end{align}
+
     \subsection{Particularización para $X_i \sim Exp(1)$}
+
+
+      \begin{align}
+        X_i \sim& Exp(1)\\
+        f_{X_{i}}(x) =& e^{-x}\\
+        F_{X_{i}}(x) =& 1-e^{-x} \\
+      \end{align}
+
+      \begin{align}
+        f_{(X_{(1)}, X_{(n)})} (x,y) =& \\
+        =& n(n-1)f(x)f(y)(F(y) - F(x))^{n-2} \\
+        =& n  (n-1) e^{-x} e^{-y} ( (1 - e^{-y}) - (1 - e^{-x}) )^{n-2} \\
+        =& n  (n-1) e^{-(x+y)} ( e^{-x} - e^{-y} )^{n-2}
+      \end{align}
 
       \paragraph{}
       [TODO ]
@@ -47,6 +80,40 @@
     \paragraph{}
     [TODO ]
 
+    \begin{align}
+      T^{-1}:
+      \begin{cases}
+        R = X_{(n)} - X_{(1)} \\
+        S = X_{(1)}
+      \end{cases} &&
+      T:
+      \begin{cases}
+        X_{(1)} = S \\
+        X_{(n)} = R + S
+      \end{cases}
+    \end{align}
+
+    \begin{align}
+      abs(J) =  abs(det(DT)) = abs\left(det\left( \begin{array}{cc}
+\frac{\partial X_{(1)}}{ \partial R} & \frac{\partial X_{(n)}}{ \partial R}  \\
+\frac{\partial X_{(1)}}{ \partial S} & \frac{\partial X_{(n)}}{ \partial S} \end{array} \right) \right) = abs\left(det\left( \begin{array}{cc}
+0 & 1  \\
+1 & 1 \end{array} \right) \right)  = \mid -1\mid = 1
+    \end{align}
+
+
+    \begin{align}
+      f_{R,S}(r,s) =& \\
+      =& f_{(X_{(1)}, X_{(n)})} (s,r+s) \\
+      =& n(n-1)f(s)f(r+s)(F(r+s) - F(s))^{n-2}
+    \end{align}
+
+    \begin{align}
+      f_{R} (r) =& \\
+      =& \int_{-\infty}^{\infty} f_{R,S}(r,s) ds \\
+      =& \int_{-\infty}^{\infty} n(n-1)f(s)f(r+s)(F(r+s) - F(s))^{n-2} (r,s) ds \\
+      =& n(n-1)\int_{-\infty}^{\infty} f(s)f(r+s)(F(r+s) - F(s))^{n-2} (r,s) ds \\
+    \end{align}
     \subsection{Particularización para $X_i \sim Exp(1)$}
 
       \paragraph{}
