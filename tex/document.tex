@@ -1,6 +1,6 @@
 % !TEX root = ./document.tex
 
-\documentclass[11pt]{article}
+\documentclass{article}
 
 \usepackage{mystyle}
 \usepackage{myvars}
@@ -15,6 +15,48 @@
   %  TEXT
   %-----------------------------
 
+  \section{Introducción}
+
+    \paragraph{}
+    La distribución ordenada es aquella que surge a partir de un conjunto de \emph{variables aleatorias independientes e igualmente distribuidas} (v.a.i.i.d. a partir de ahora) sobre las cuales se impone la restricción de orden ascendente entre ellas. De manera matemática, se dice que $X_{1}, X_{2},...,X_{i}, ..., X_{n}$ es un conjunto de v.a.i.i.d. Entonces, la distribución ordenada que surge a partir de estas se denota como $X_{(1)}, X_{(2)}, ...,X_{(i)} ,..., X_{(n)}$, es decir, se añaden paréntesis a los subíndices. Por tanto, la restricción que tiene esta distribución generada respecto de la anterior es el siguiente: $X_{(1)} <  X_{(2)} < ... < X_{(i)} < ... < X_{(n)}$.
+
+    \paragraph{}
+    Cabe destacar que estas variables llevan siguen todas ellas la misma distribución (de ahí el \emph{igualmente distribuidas}). Esto se puede denotar como $X_{i} \sim F$ donde $F$ puede ser cualquier distribución. Por tanto, todas las variables poseen la misma función de densidad y de distribución, es decir, $f(x) = f_{X_i}(x) = f_{X_j}(x)$ y $F(x) = F_{X_i}(x) = F_{X_j}(x) \ \forall i,j \in \{1,..., n\}$. La propiedad de \emph{independencia} implica por tanto, que la función de distribución conjunta cumpla la siguiente propiedad: $f(x_1, ..., x_n) = f(x_1) * ... * f(x_n)$. Dichas cualidades serán de utilidad posteriormente.
+
+    \paragraph{}
+    [TODO ]
+
+    \paragraph{}
+    El resto del trabajo se desarrolla de la siguiente manera: en las sección \ref{sec:e1} se demuestra la función de densidad conjunta para el vector $(X_{(1)}, X_{(n)})$, que después se particulariza para el caso $X_i \sim Exp(1)$. En la sección \ref{sec:e2} se estudia la distribución del rango $R = X_{(n)} - X_{(1)}$ y se particulariza para el caso exponencial de parámetro $\lambda=1$ al igual que en la sección anterior. Por último, en la sección \ref{sec:e3} se obtienen las distribuciones del rango y la mediana para el caso de que $X_i \sim U\{1,2,3\} \ \forall i  \in \{1,...,4\}$ utilizando propiedades de combinatoria.
+
+
+  \section{Función de densidad conjunta de la distribución ordenada $(X_{(1)}, X_{(n)})$ para variables continuas}
+  \label{sec:e2}
+
+    \paragraph{}
+    [TODO ]
+
+    \subsection{Particularización para $X_i \sim Exp(1)$}
+
+      \paragraph{}
+      [TODO ]
+
+  \section{Función de densidad del rango de la distribución ordenada $R = X_{(n)} - X_{(1)}$ para variables continuas}
+  \label{sec:e2}
+
+    \paragraph{}
+    [TODO ]
+
+    \subsection{Particularización para $X_i \sim Exp(1)$}
+
+      \paragraph{}
+      [TODO ]
+
+  \section{Distribuciones del rango y la mediana para la distribución ordenada generada por $X_i \sim U\{1,2,3\} \ \forall i  \in \{1,...,4\}$}
+  \label{sec:e3}
+
+    \paragraph{}
+    [TODO]
 
   %-----------------------------
   %  Bibliographic references
