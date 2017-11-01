@@ -38,7 +38,7 @@
     En esta sección se va a desarrollar la expresión de la función de densidad de la distribución conjunta para el valor mínimo y máximo de una distribución ordenada arbitratia donde el mínimo viene dado por $X_{(1)}$ y el máximo por $X_{(n)}$. Por tanto, se estudiará la distribución generada por el vector aleatorio $(X_{(1)}, X_{(n)})$.
 
     \paragraph{}
-    Para estudiar obtener la función de densidad conjunta en este caso, primeramente se va a desarrollar en la ecuación \ref{eq:joint_ordered_distribution} la función de distribución conjunta para llegar hasta una expresión dada a partir de la ley de las variables que componen el conjunto de \emph{v.a.i.i.d.}, que se asume como conocida. En este caso, la idea intuitiva está en el tercer paso, en el que aplica la ley de probabilidades totales para conseguir la desigualdad $x < X_{(1)} < X_{(n)} < y$ que es fácil entender que es equivalente a $x < X_i < y,\quad \forall i \in \{1, ..., n\}$
+    Para estudiar obtener la función de densidad conjunta en este caso, primeramente se va a desarrollar en la ecuación \ref{eq:joint_ordered_distribution} la función de distribución conjunta para llegar hasta una expresión dada a partir de la ley de las variables que componen el conjunto de \emph{v.a.i.i.d.}, que se asume como conocida. En este caso, la idea intuitiva está en el tercer paso, en el que aplica la \emph{ley de probabilidades totales} para conseguir la desigualdad $x < X_{(1)} < X_{(n)} < y$ que es fácil entender que es equivalente a $x < X_i < y,\quad \forall i \in \{1, ..., n\}$
 
     \begin{align}
     \label{eq:joint_ordered_distribution}
@@ -96,9 +96,10 @@
   \label{sec:e2}
 
     \paragraph{}
-    [TODO ]
+    En esta sección se va a realizar el desarrollo necesario para la obtención de la función de densidad del rango generada a partir de la distribución ordenada de un conjunto de \emph{v.a.i.i.d.} definida como $R = X_{(n)} - X_{(1)}$. Esto se puede entender de manera sencilla puesto que $X_{(n)}$ representa el máximo y $X_{(1)}$ el mínimo. Para esto, se puede aplicar la propiedad de transformación de vectores de variables mediante la utilización del teorema de \emph{cambio de variable}. Para ello, es necesario conocer la función de distribución conjunta $f_{(X_{(1)}, X_{(n)})}(x,y)$, que se obtuvo en la sección anterior. La aplicación $T$ del cambio de variable se muestra en la ecuación \eqref{eq:variable_transformation} y el \emph{Jacobiano} de la misma se desarrolla en la ecuación \eqref{eq:variable_transformation_jacobian}.
 
     \begin{align}
+    \label{eq:variable_transformation}
       T^{-1}:
       \begin{cases}
         R = X_{(n)} - X_{(1)} \\
@@ -112,30 +113,51 @@
     \end{align}
 
     \begin{align}
-      abs(J) =  abs(det(DT)) = abs\left(det\left( \begin{array}{cc}
-\frac{\partial X_{(1)}}{ \partial R} & \frac{\partial X_{(n)}}{ \partial R}  \\
-\frac{\partial X_{(1)}}{ \partial S} & \frac{\partial X_{(n)}}{ \partial S} \end{array} \right) \right) = abs\left(det\left( \begin{array}{cc}
-0 & 1  \\
-1 & 1 \end{array} \right) \right)  = \mid -1\mid = 1
+    \label{eq:variable_transformation_jacobian}
+      abs(J) =
+      abs(det(DT)) =
+      abs\left(det\left( \begin{array}{cc}
+        \frac{\partial X_{(1)}}{ \partial R} & \frac{\partial X_{(n)}}{ \partial R}  \\
+        \frac{\partial X_{(1)}}{ \partial S} & \frac{\partial X_{(n)}}{ \partial S}
+      \end{array} \right) \right) =
+      abs\left(det\left( \begin{array}{cc}
+        0 & 1  \\
+        1 & 1
+      \end{array} \right) \right)  =
+      \mid -1\mid =
+      1
     \end{align}
 
+    \paragraph{}
+    La función de densidad conjunta de la transformación $(R,S)$ se muestra en la ecuación \eqref{eq:joint_distribution_transformation}, que consiste en la aplicación del teorema de \emph{cambio de variable}, en este caso aplicado sobre la función de densidad de un vector aleatorio.
 
     \begin{align}
-      f_{R,S}(r,s) =& \\
-      =& f_{(X_{(1)}, X_{(n)})} (s,r+s) \\
-      =& n(n-1)f(s)f(r+s)(F(r+s) - F(s))^{n-2}
+    \label{eq:joint_distribution_transformation}
+      \begin{split}
+        f_{R,S}(r,s) =& \\
+        =& f_{(X_{(1)}, X_{(n)})} (s,r+s) \\
+        =& n(n-1)f(s)f(r+s)(F(r+s) - F(s))^{n-2}
+      \end{split}
     \end{align}
 
+    \paragraph{}
+    Lo siguiente es obtener la distribución marginal de la variable $R$, que representa el rango del conjunto de \emph{v.a.i.i.d.} para lo cual se ha aplicado la ley de probabilidades totales como $f(x) = \int_{-\infty}^{\infty} f(x,y) dy$. El desarrollo de la función de densidad del rango se ha llevado a cabo en la ecuación \eqref{eq:range_distribution_transformation}.
+
     \begin{align}
-      f_{R} (r) =& \\
-      =& \int_{-\infty}^{\infty} f_{R,S}(r,s) ds \\
-      =& \int_{-\infty}^{\infty} n(n-1)f(s)f(r+s)(F(r+s) - F(s))^{n-2} ds \\
-      =& n(n-1)\int_{-\infty}^{\infty} f(s)f(r+s)(F(r+s) - F(s))^{n-2} ds \\
+    \label{eq:range_distribution_transformation}
+      \begin{split}
+        f_{R} (r) =& \\
+        =& \int_{-\infty}^{\infty} f_{R,S}(r,s) ds \\
+        =& \int_{-\infty}^{\infty} n(n-1)f(s)f(r+s)(F(r+s) - F(s))^{n-2} ds \\
+        =& n(n-1)\int_{-\infty}^{\infty} f(s)f(r+s)(F(r+s) - F(s))^{n-2} ds \\
+      \end{split}
     \end{align}
+
+
     \subsection{Particularización para $X_i \sim Exp(1)$}
 
       \paragraph{}
-      [TODO ]
+      Al igual que para el caso de la función de densidad de densidad conjunta para la distribución ordenada, que se particularizó para la distribución exponencial con parámetro $\lambda = 1$, en este caso se ha hecho lo mismo para la distribución del rango.
 
       \begin{align*}
         X_i \sim& Exp(1)\\
@@ -143,14 +165,20 @@
         F_{X_{i}}(x) =& 1-e^{-x} \\
       \end{align*}
 
+      \paragraph{}
+      Para ello se ha utilizado la expresión de la función de densidad del rango obtenida en la ecuación \eqref{eq:range_distribution_transformation}, utilizando las funciones de distribución y densidad de la distribución exponencial de parámetro $\lambda = 1$, que se muestran arriba. Esto se muestra en la ecuación \eqref{eq:range_distribution_transformation_exp}.
+
       \begin{align}
-        f_{R} (r) =&\\
-        =& \int_{-\infty}^{\infty} f_{R,S}(r,s) ds \\
-        =& n(n-1)\int_{0}^{\infty} f(s)f(r+s)(F(r+s) - F(s))^{n-2} ds \\
-        =& n(n-1)\int_{0}^{\infty} e^{-s}e^{-(r+s)}((1-e^{-(r+s)}) - (1-e^{-s}))^{n-2} ds \\
-        =& n(n-1)e^{-r}\int_{0}^{\infty} e^{-2s}( e^{-s} - e^{-(r+s)})^{n-2} ds \\
-        =& (n-1)e^{-r}e^{-r(-2 + n)} (e^r -1)^{-2 + n} \\
-        =& (n-1)e^{-2r(-2 + n) r} (e^r -1)^{-2 + n}
+      \label{eq:range_distribution_transformation_exp}
+        \begin{split}
+          f_{R} (r) =&\\
+          =& \int_{-\infty}^{\infty} f_{R,S}(r,s) ds \\
+          =& n(n-1)\int_{0}^{\infty} f(s)f(r+s)(F(r+s) - F(s))^{n-2} ds \\
+          =& n(n-1)\int_{0}^{\infty} e^{-s}e^{-(r+s)}((1-e^{-(r+s)}) - (1-e^{-s}))^{n-2} ds \\
+          =& n(n-1)e^{-r}\int_{0}^{\infty} e^{-2s}( e^{-s} - e^{-(r+s)})^{n-2} ds \\
+          =& (n-1)e^{-r}e^{-r(-2 + n)} (e^r -1)^{-2 + n} \\
+          =& (n-1)e^{-2r(-2 + n) r} (e^r -1)^{-2 + n}
+        \end{split}
       \end{align}
 
   \section{Distribuciones del rango y la mediana para la distribución ordenada generada por $X_i \sim U\{1,2,3\} \ \forall i  \in \{1,...,4\}$}
@@ -162,104 +190,105 @@
     \subsection{Rango}
 
 
-    \begin{align*}
-      X_{(1)} = 1,X_{(4)} = 1 & \Rightarrow \frac{1}{81}\\
-      &1111 \rightarrow 1 \\
-      X_{(1)} = 1,X_{(4)} = 2 & \Rightarrow \frac{14}{81}\\
-      &1112 \rightarrow \frac{4!}{3!1!} = 4 \\
-      &1122 \rightarrow \frac{4!}{2!2!} = 6  \\
-      &1222 \rightarrow \frac{4!}{3!1!} = 4  \\
-      X_{(1)} = 1,X_{(4)} = 3 & \Rightarrow \frac{50}{81}\\
-      &1113 \rightarrow \frac{4!}{3!1!} = 4 \\
-      &1133 \rightarrow \frac{4!}{2!2!} = 6  \\
-      &1333 \rightarrow \frac{4!}{3!1!} = 4  \\
-      &1123 \rightarrow \frac{4!}{2!} = 12 \\
-      &1223 \rightarrow \frac{4!}{2!} = 12  \\
-      &1233 \rightarrow \frac{4!}{2!} = 12  \\
-      X_{(1)} = 2,X_{(4)} = 2 & \Rightarrow \frac{1}{81}\\
-      &2222 \rightarrow 1 \\
-      X_{(1)} = 2,X_{(4)} = 3 & \Rightarrow \frac{14}{81}\\
-      &2223 \rightarrow \frac{4!}{3!1!} = 4 \\
-      &2233 \rightarrow \frac{4!}{2!2!} = 6  \\
-      &2333 \rightarrow \frac{4!}{3!1!} = 4  \\
-      X_{(1)} = 3,X_{(4)} = 3 & \Rightarrow \frac{1}{81}\\
-      &3333 \rightarrow 1 \\
-    \end{align*}
+      \begin{table}[H]
+        \centering
+        \begin{tabular}{c | c  c  c | c}
+          $X_{(1)},X_{(4)}$ & 1               & 2               & 3               &                 \\ \hline
+          1                 & $\frac{1}{81}$  & $\frac{14}{81}$ & $\frac{50}{81}$ & $\frac{65}{81}$ \\
+          2                 & 0               & $\frac{1}{81}$  & $\frac{14}{81}$ & $\frac{15}{81}$ \\
+          3                 & 0               & 0               & $\frac{1}{81}$  & $\frac{1}{81}$  \\ \hline
+                            &  $\frac{1}{81}$ & $\frac{15}{81}$ &                 & 1
+        \end{tabular}
+        \caption{Ley de la distribución conjunta de $(X_{(1)},X_{(4)})$}
+        \label{}
+      \end{table}
 
-    \begin{table}[H]
-      \centering
-      \begin{tabular}{c | c  c  c | c}
-        $X_{(1)},X_{(4)}$ & 1               & 2               & 3               &                 \\ \hline
-        1                 & $\frac{1}{81}$  & $\frac{14}{81}$ & $\frac{50}{81}$ & $\frac{65}{81}$ \\
-        2                 & 0               & $\frac{1}{81}$  & $\frac{14}{81}$ & $\frac{15}{81}$ \\
-        3                 & 0               & 0               & $\frac{1}{81}$  & $\frac{1}{81}$  \\ \hline
-                          &  $\frac{1}{81}$ & $\frac{15}{81}$ &                 & 1
-      \end{tabular}
-      \caption{}
-      \label{}
-    \end{table}
+      \begin{align*}
+        X_{(1)} = 1,X_{(4)} = 1 & \Rightarrow \frac{1}{81}\\
+        &1111 \rightarrow 1 \\
+        X_{(1)} = 1,X_{(4)} = 2 & \Rightarrow \frac{14}{81}\\
+        &1112 \rightarrow \frac{4!}{3!1!} = 4 \\
+        &1122 \rightarrow \frac{4!}{2!2!} = 6  \\
+        &1222 \rightarrow \frac{4!}{3!1!} = 4  \\
+        X_{(1)} = 1,X_{(4)} = 3 & \Rightarrow \frac{50}{81}\\
+        &1113 \rightarrow \frac{4!}{3!1!} = 4 \\
+        &1133 \rightarrow \frac{4!}{2!2!} = 6  \\
+        &1333 \rightarrow \frac{4!}{3!1!} = 4  \\
+        &1123 \rightarrow \frac{4!}{2!} = 12 \\
+        &1223 \rightarrow \frac{4!}{2!} = 12  \\
+        &1233 \rightarrow \frac{4!}{2!} = 12  \\
+        X_{(1)} = 2,X_{(4)} = 2 & \Rightarrow \frac{1}{81}\\
+        &2222 \rightarrow 1 \\
+        X_{(1)} = 2,X_{(4)} = 3 & \Rightarrow \frac{14}{81}\\
+        &2223 \rightarrow \frac{4!}{3!1!} = 4 \\
+        &2233 \rightarrow \frac{4!}{2!2!} = 6  \\
+        &2333 \rightarrow \frac{4!}{3!1!} = 4  \\
+        X_{(1)} = 3,X_{(4)} = 3 & \Rightarrow \frac{1}{81}\\
+        &3333 \rightarrow 1 \\
+      \end{align*}
 
-    \begin{table}[H]
-      \centering
-      \begin{tabular}{ c | c c c |}
-        Valores       & 0             & 1             & 2 \\ \hline
-        Probabilidad  & $\frac{3}{81}$  & $\frac{28}{81}$ & $\frac{50}{81}$
-      \end{tabular}
-      \caption{}
-      \label{}
 
-    \end{table}
+      \begin{table}[H]
+        \centering
+        \begin{tabular}{ c | c c c |}
+          Valores       & 0             & 1             & 2 \\ \hline
+          Probabilidad  & $\frac{3}{81}$  & $\frac{28}{81}$ & $\frac{50}{81}$
+        \end{tabular}
+        \caption{Ley del rango $R=X_{(4)} - X_{(1)}$}
+        \label{}
+
+      \end{table}
 
     \subsection{Mediana}
 
 
-    \begin{table}[H]
-      \centering
-      \begin{tabular}{c | c  c  c | c}
-        $X_{(2)},X_{(3)}$ & 1               & 2               & 3               &                 \\ \hline
-        1                 & $\frac{9}{81}$  & $\frac{18}{81}$ & $\frac{6}{81}$  &$\frac{39}{81}$  \\
-        2                 & 0               & $\frac{21}{81}$ & $\frac{18}{81}$ & $\frac{27}{81}$ \\
-        3                 & 0               & 0               & $\frac{9}{81}$  & $\frac{9}{81}$  \\ \hline
-                          & $\frac{9}{81}$  & $\frac{27}{81}$ & $\frac{39}{81}$ & 1
-      \end{tabular}
-      \caption{}
-      \label{}
-    \end{table}
+      \begin{table}[H]
+        \centering
+        \begin{tabular}{c | c  c  c | c}
+          $X_{(2)},X_{(3)}$ & 1               & 2               & 3               &                 \\ \hline
+          1                 & $\frac{9}{81}$  & $\frac{18}{81}$ & $\frac{6}{81}$  &$\frac{39}{81}$  \\
+          2                 & 0               & $\frac{21}{81}$ & $\frac{18}{81}$ & $\frac{27}{81}$ \\
+          3                 & 0               & 0               & $\frac{9}{81}$  & $\frac{9}{81}$  \\ \hline
+                            & $\frac{9}{81}$  & $\frac{27}{81}$ & $\frac{39}{81}$ & 1
+        \end{tabular}
+        \caption{Ley de la distribución conjunta de $X_{(2)},X_{(3)}$}
+        \label{}
+      \end{table}
 
-    \begin{align*}
-      X_{(2)} = 1,X_{(3)} = 1 & \Rightarrow \frac{9}{81}\\
-      &1111 \rightarrow 1 \\
-      &1112 \rightarrow \frac{4!}{3!1!} = 4 \\
-      &1113 \rightarrow \frac{4!}{3!1!} = 4 \\
-      X_{(2)} = 1,X_{(3)} = 2 & \Rightarrow \frac{18}{81}\\
-      &1123 \rightarrow \frac{4!}{2!} = 12 \\
-      &1122 \rightarrow \frac{4!}{2!2!} = 6  \\
-      X_{(2)} = 1,X_{(3)} = 3 & \Rightarrow \frac{6}{81}\\
-      &1133 \rightarrow \frac{4!}{2!2!} = 6  \\
-      X_{(2)} = 2,X_{(3)} = 2 & \Rightarrow \frac{21}{81}\\
-      &2222 \rightarrow 1 \\
-      &2223 \rightarrow \frac{4!}{3!1!} = 4 \\
-      &1222 \rightarrow \frac{4!}{3!1!} = 4 \\
-      &1223 \rightarrow \frac{4!}{2!} = 12 \\
-      X_{(2)} = 2,X_{(3)} = 3 & \Rightarrow \frac{18}{81}\\
-      &1233 \rightarrow \frac{4!}{2!} = 12 \\
-      &2233 \rightarrow \frac{4!}{2!2!} = 6  \\
-      X_{(2)} = 3,X_{(3)} = 3 & \Rightarrow \frac{9}{81}\\
-      &3333 \rightarrow 1 \\
-      &1333 \rightarrow \frac{4!}{3!1!} = 4 \\
-      &2333 \rightarrow \frac{4!}{3!1!} = 4 \\
-    \end{align*}
+      \begin{align*}
+        X_{(2)} = 1,X_{(3)} = 1 & \Rightarrow \frac{9}{81}\\
+        &1111 \rightarrow 1 \\
+        &1112 \rightarrow \frac{4!}{3!1!} = 4 \\
+        &1113 \rightarrow \frac{4!}{3!1!} = 4 \\
+        X_{(2)} = 1,X_{(3)} = 2 & \Rightarrow \frac{18}{81}\\
+        &1123 \rightarrow \frac{4!}{2!} = 12 \\
+        &1122 \rightarrow \frac{4!}{2!2!} = 6  \\
+        X_{(2)} = 1,X_{(3)} = 3 & \Rightarrow \frac{6}{81}\\
+        &1133 \rightarrow \frac{4!}{2!2!} = 6  \\
+        X_{(2)} = 2,X_{(3)} = 2 & \Rightarrow \frac{21}{81}\\
+        &2222 \rightarrow 1 \\
+        &2223 \rightarrow \frac{4!}{3!1!} = 4 \\
+        &1222 \rightarrow \frac{4!}{3!1!} = 4 \\
+        &1223 \rightarrow \frac{4!}{2!} = 12 \\
+        X_{(2)} = 2,X_{(3)} = 3 & \Rightarrow \frac{18}{81}\\
+        &1233 \rightarrow \frac{4!}{2!} = 12 \\
+        &2233 \rightarrow \frac{4!}{2!2!} = 6  \\
+        X_{(2)} = 3,X_{(3)} = 3 & \Rightarrow \frac{9}{81}\\
+        &3333 \rightarrow 1 \\
+        &1333 \rightarrow \frac{4!}{3!1!} = 4 \\
+        &2333 \rightarrow \frac{4!}{3!1!} = 4 \\
+      \end{align*}
 
 
-    \begin{table}[H]
-      \centering
-      \begin{tabular}{ c | c c c c c|}
-        Valores       & 1               & $\frac{3}{2}$   & 2               & $\frac{5}{2}$   & 3               \\ \hline
-        Probabilidad  & $\frac{9}{81}$  & $\frac{18}{81}$ & $\frac{27}{81}$ & $\frac{18}{81}$ & $\frac{9}{81}$
-      \end{tabular}
-      \caption{}
-      \label{}
-    \end{table}
+      \begin{table}[H]
+        \centering
+        \begin{tabular}{ c | c c c c c|}
+          Valores       & 1               & $\frac{3}{2}$   & 2               & $\frac{5}{2}$   & 3               \\ \hline
+          Probabilidad  & $\frac{9}{81}$  & $\frac{18}{81}$ & $\frac{27}{81}$ & $\frac{18}{81}$ & $\frac{9}{81}$
+        \end{tabular}
+        \caption{Ley de la Mediana $Me = \frac{X_{(2)}+X_{(3))}}{2}$ }
+        \label{}
+      \end{table}
   %-----------------------------
   %  Bibliographic references
   %-----------------------------
