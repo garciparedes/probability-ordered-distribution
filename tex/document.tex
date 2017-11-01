@@ -25,9 +25,6 @@
     Cabe destacar que estas variables llevan siguen todas ellas la misma distribución (de ahí el \emph{igualmente distribuidas}). Esto se puede denotar como $X_{i} \sim F$ donde $F$ puede ser cualquier distribución. Por tanto, todas las variables poseen la misma función de densidad y de distribución, es decir, $f(x) = f_{X_i}(x) = f_{X_j}(x)$ y $F(x) = F_{X_i}(x) = F_{X_j}(x), \quad \forall i,j \in \{1,..., n\}$. La propiedad de \emph{independencia} implica por tanto, que la función de distribución conjunta cumpla la siguiente propiedad: $f(x_1, ..., x_n) = f(x_1) * ... * f(x_n)$. Dichas cualidades serán de utilidad posteriormente.
 
     \paragraph{}
-    [TODO ]
-
-    \paragraph{}
     El resto del trabajo se desarrolla de la siguiente manera: en las sección \ref{sec:e1} se demuestra la función de densidad conjunta para el vector $(X_{(1)}, X_{(n)})$, que después se particulariza para el caso $X_i \sim Exp(1)$. En la sección \ref{sec:e2} se estudia la distribución del rango $R = X_{(n)} - X_{(1)}$ y se particulariza para el caso exponencial de parámetro $\lambda=1$ al igual que en la sección anterior. Por último, en la sección \ref{sec:e3} se obtienen las distribuciones del rango y la mediana para el caso de que $X_i \sim U\{1,2,3\} \ \forall i  \in \{1,...,4\}$ utilizando propiedades de combinatoria.
 
 
@@ -75,8 +72,8 @@
 
       \begin{align*}
         X_i \sim& Exp(1)\\
-        f_{X_{i}}(x) =& e^{-x}\\
-        F_{X_{i}}(x) =& 1-e^{-x} \\
+        f_{X_{i}}(x) =& e^{-x}  \quad 0 \leq x \\
+        F_{X_{i}}(x) =& 1-e^{-x}  \quad 0 \leq x \\
       \end{align*}
 
       \paragraph{}
@@ -89,7 +86,7 @@
           =& n(n-1)f(x)f(y)(F(y) - F(x))^{n-2} \\
           =& n  (n-1) e^{-x} e^{-y} ( (1 - e^{-y}) - (1 - e^{-x}) )^{n-2} \\
           =& n  (n-1) e^{-(x+y)} ( e^{-x} - e^{-y} )^{n-2}
-        \end{split}
+        \end{split} & 0 \leq x \quad 0 \leq y
       \end{align}
 
   \section{Función de densidad del rango de la distribución ordenada $R = X_{(n)} - X_{(1)}$ para variables continuas}
@@ -137,7 +134,7 @@
         f_{R,S}(r,s) =& \\
         =& f_{(X_{(1)}, X_{(n)})} (s,r+s) \\
         =& n(n-1)f(s)f(r+s)(F(r+s) - F(s))^{n-2}
-      \end{split}
+      \end{split}& s \leq r + s
     \end{align}
 
     \paragraph{}
@@ -150,7 +147,7 @@
         =& \int_{-\infty}^{\infty} f_{R,S}(r,s) ds \\
         =& \int_{-\infty}^{\infty} n(n-1)f(s)f(r+s)(F(r+s) - F(s))^{n-2} ds \\
         =& n(n-1)\int_{-\infty}^{\infty} f(s)f(r+s)(F(r+s) - F(s))^{n-2} ds \\
-      \end{split}
+      \end{split}& 0 \leq r
     \end{align}
 
 
@@ -161,8 +158,8 @@
 
       \begin{align*}
         X_i \sim& Exp(1)\\
-        f_{X_{i}}(x) =& e^{-x}\\
-        F_{X_{i}}(x) =& 1-e^{-x} \\
+        f_{X_{i}}(x) =& e^{-x}  \quad 0 \leq x \\
+        F_{X_{i}}(x) =& 1-e^{-x} \quad 0 \leq x \\
       \end{align*}
 
       \paragraph{}
@@ -178,7 +175,7 @@
           =& n(n-1)e^{-r}\int_{0}^{\infty} e^{-2s}( e^{-s} - e^{-(r+s)})^{n-2} ds \\
           =& (n-1)e^{-r}e^{-r(-2 + n)} (e^r -1)^{-2 + n} \\
           =& (n-1)e^{-2r(-2 + n) r} (e^r -1)^{-2 + n}
-        \end{split}
+        \end{split} & 0 \leq r
       \end{align}
 
   \section{Distribuciones del rango y la mediana para la distribución ordenada generada por $X_i \sim U\{1,2,3\} \quad \forall i  \in \{1,...,4\}$}
