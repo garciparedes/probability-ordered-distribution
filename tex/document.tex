@@ -22,7 +22,7 @@
     La distribución ordenada es aquella que surge a partir de un conjunto de \emph{variables aleatorias independientes e igualmente distribuidas} (v.a.i.i.d. a partir de ahora) sobre las cuales se impone la restricción de orden ascendente entre ellas. De manera matemática, se dice que $X_{1}, X_{2},...,X_{i}, ..., X_{n}$ es un conjunto de v.a.i.i.d. Entonces, la distribución ordenada que surge a partir de estas se denota como $X_{(1)}, X_{(2)}, ...,X_{(i)} ,..., X_{(n)}$, es decir, se añaden paréntesis a los subíndices. Por tanto, la restricción que tiene esta distribución generada respecto de la anterior es el siguiente: $X_{(1)} <  X_{(2)} < ... < X_{(i)} < ... < X_{(n)}$.
 
     \paragraph{}
-    Cabe destacar que estas variables llevan siguen todas ellas la misma distribución (de ahí el \emph{igualmente distribuidas}). Esto se puede denotar como $X_{i} \sim F$ donde $F$ puede ser cualquier distribución. Por tanto, todas las variables poseen la misma función de densidad y de distribución, es decir, $f(x) = f_{X_i}(x) = f_{X_j}(x)$ y $F(x) = F_{X_i}(x) = F_{X_j}(x) \ \forall i,j \in \{1,..., n\}$. La propiedad de \emph{independencia} implica por tanto, que la función de distribución conjunta cumpla la siguiente propiedad: $f(x_1, ..., x_n) = f(x_1) * ... * f(x_n)$. Dichas cualidades serán de utilidad posteriormente.
+    Cabe destacar que estas variables llevan siguen todas ellas la misma distribución (de ahí el \emph{igualmente distribuidas}). Esto se puede denotar como $X_{i} \sim F$ donde $F$ puede ser cualquier distribución. Por tanto, todas las variables poseen la misma función de densidad y de distribución, es decir, $f(x) = f_{X_i}(x) = f_{X_j}(x)$ y $F(x) = F_{X_i}(x) = F_{X_j}(x), \quad \forall i,j \in \{1,..., n\}$. La propiedad de \emph{independencia} implica por tanto, que la función de distribución conjunta cumpla la siguiente propiedad: $f(x_1, ..., x_n) = f(x_1) * ... * f(x_n)$. Dichas cualidades serán de utilidad posteriormente.
 
     \paragraph{}
     [TODO ]
@@ -35,45 +35,62 @@
   \label{sec:e2}
 
     \paragraph{}
-    [TODO ]
+    En esta sección se va a desarrollar la expresión de la función de densidad de la distribución conjunta para el valor mínimo y máximo de una distribución ordenada arbitratia donde el mínimo viene dado por $X_{(1)}$ y el máximo por $X_{(n)}$. Por tanto, se estudiará la distribución generada por el vector aleatorio $(X_{(1)}, X_{(n)})$.
+
+    \paragraph{}
+    Para estudiar obtener la función de densidad conjunta en este caso, primeramente se va a desarrollar en la ecuación \ref{eq:joint_ordered_distribution} la función de distribución conjunta para llegar hasta una expresión dada a partir de la ley de las variables que componen el conjunto de \emph{v.a.i.i.d.}, que se asume como conocida. En este caso, la idea intuitiva está en el tercer paso, en el que aplica la ley de probabilidades totales para conseguir la desigualdad $x < X_{(1)} < X_{(n)} < y$ que es fácil entender que es equivalente a $x < X_i < y,\quad \forall i \in \{1, ..., n\}$
 
     \begin{align}
-      F_{(X_{(1)}, X_{(n)})} (x,y) =& \\
-      =& P(X_{(1)} < x, X_{(n)} < y) \\
-      =& P(X_{(n)} < y) - P(x < X_{(1)}, X_{(n)} < y) \\
-      =& P(X_{(n)} < y) - P(x < X_{(1)} < X_{(n)} < y) \\
-      =& P(X_{1} < y) * ... * P(X_{n} < y) - P(x < X_1 < y) * ... * P(x < X_n < y) \\
-      =& F(y) * ... *F(y)  - (F(y)-F(x)) * ... * (F(y)-F(x)) \\
-      =& F(y)^n - (F(y)-F(x))^n
+    \label{eq:joint_ordered_distribution}
+      \begin{split}
+        F_{(X_{(1)}, X_{(n)})} (x,y) =& \\
+        =& P(X_{(1)} < x, X_{(n)} < y) \\
+        =& P(X_{(n)} < y) - P(x < X_{(1)}, X_{(n)} < y) \\
+        =& P(X_{(n)} < y) - P(x < X_{(1)} < X_{(n)} < y) \\
+        =& P(X_{1} < y) * ... * P(X_{n} < y) - P(x < X_1 < y) * ... * P(x < X_n < y) \\
+        =& F(y) * ... *F(y)  - (F(y)-F(x)) * ... * (F(y)-F(x)) \\
+        =& F(y)^n - (F(y)-F(x))^n
+      \end{split}
     \end{align}
 
+    \paragraph{}
+    El siguiente paso para llegar a la función de densidad conjunta consiste en el desarrollo de la aplicación de derivación múltiple para llegar a la función de densidad a partir de la de distribución. Esto es posible puesto que se cumple que $f(x)= \int_{-\infty}^{\infty} F(x) dx$. Por tanto, en este caso, la derivación se basa únicamente en la aplicación de operaciones algebraicas a partir de dicha propiedad. Esto se muestra en la ecuación \ref{eq:joint_ordered_density}.
+
     \begin{align}
-      f_{(X_{(1)}, X_{(n)})} (x,y) =& \\
-      =& \frac{\partial^2}{\partial x \partial y}F_{(X_{(1)}, X_{(n)})} (x,y) \\
-      =& \frac{\partial}{\partial x}( \frac{\partial}{\partial y} F(y)^n - (F(y)-F(x))^n) \\
-      =& \frac{\partial}{\partial x}( n (F(y)^{n-1}*f(y) - (F(y)-F(x))^{n-1}*f(y))) \\
-      =& \frac{\partial}{\partial x}( -n (F(y)-F(x))^{n-1}*f(y))) \\
-      =& n(n-1)f(x)f(y)(F(y) - F(x))^{n-2}
+      \label{eq:joint_ordered_density}
+      \begin{split}
+        f_{(X_{(1)}, X_{(n)})} (x,y) =& \\
+        =& \frac{\partial^2}{\partial x \partial y}F_{(X_{(1)}, X_{(n)})} (x,y) \\
+        =& \frac{\partial}{\partial x}( \frac{\partial}{\partial y} F(y)^n - (F(y)-F(x))^n) \\
+        =& \frac{\partial}{\partial x}( n (F(y)^{n-1}*f(y) - (F(y)-F(x))^{n-1}*f(y))) \\
+        =& \frac{\partial}{\partial x}( -n (F(y)-F(x))^{n-1}*f(y))) \\
+        =& n(n-1)f(x)f(y)(F(y) - F(x))^{n-2}
+      \end{split}
     \end{align}
 
     \subsection{Particularización para $X_i \sim Exp(1)$}
 
+      \paragraph{}
+      Lo siguiente que se va a llevar a cabo es la particularización de la función de densidad conjunta de la distribución ordenada de \emph{v.a.i.i.d} para el caso de que estas sigan una distribución exponencial de parámetro $\lambda = 1$.
 
-      \begin{align}
+      \begin{align*}
         X_i \sim& Exp(1)\\
         f_{X_{i}}(x) =& e^{-x}\\
         F_{X_{i}}(x) =& 1-e^{-x} \\
-      \end{align}
-
-      \begin{align}
-        f_{(X_{(1)}, X_{(n)})} (x,y) =& \\
-        =& n(n-1)f(x)f(y)(F(y) - F(x))^{n-2} \\
-        =& n  (n-1) e^{-x} e^{-y} ( (1 - e^{-y}) - (1 - e^{-x}) )^{n-2} \\
-        =& n  (n-1) e^{-(x+y)} ( e^{-x} - e^{-y} )^{n-2}
-      \end{align}
+      \end{align*}
 
       \paragraph{}
-      [TODO ]
+      Este desarrollo se lleva a cabo en la ecuación \eqref{eq:joint_ordered_density_exp} substituyendo las funciones de distribución y densidad de manera apropiada y aplicando operaciones algebraicas.
+
+      \begin{align}
+        \label{eq:joint_ordered_density_exp}
+        \begin{split}
+          f_{(X_{(1)}, X_{(n)})} (x,y) =& \\
+          =& n(n-1)f(x)f(y)(F(y) - F(x))^{n-2} \\
+          =& n  (n-1) e^{-x} e^{-y} ( (1 - e^{-y}) - (1 - e^{-x}) )^{n-2} \\
+          =& n  (n-1) e^{-(x+y)} ( e^{-x} - e^{-y} )^{n-2}
+        \end{split}
+      \end{align}
 
   \section{Función de densidad del rango de la distribución ordenada $R = X_{(n)} - X_{(1)}$ para variables continuas}
   \label{sec:e2}
@@ -120,11 +137,11 @@
       \paragraph{}
       [TODO ]
 
-      \begin{align}
+      \begin{align*}
         X_i \sim& Exp(1)\\
         f_{X_{i}}(x) =& e^{-x}\\
         F_{X_{i}}(x) =& 1-e^{-x} \\
-      \end{align}
+      \end{align*}
 
       \begin{align}
         f_{R} (r) =&\\
