@@ -181,14 +181,27 @@
         \end{split}
       \end{align}
 
-  \section{Distribuciones del rango y la mediana para la distribución ordenada generada por $X_i \sim U\{1,2,3\} \ \forall i  \in \{1,...,4\}$}
+  \section{Distribuciones del rango y la mediana para la distribución ordenada generada por $X_i \sim U\{1,2,3\} \quad \forall i  \in \{1,...,4\}$}
   \label{sec:e3}
 
     \paragraph{}
-    [TODO]
+    En esta sección se van a obtener las leyes del rango y la mediana para el caso concreto de que el conjunto de \emph{v.a.i.i.d.} siga una distribución $X_i \sim U\{1,2,3\} \quad \forall i  \in \{1,...,4\}$. Nótese que en este caso se está trabajando con una distribución discreta, para lo cual es más apropiado apoyarse en una técnica diferente de las descritas en secciones anteriores. En este caso se utilizarán propiedades de combinatoria para facilitar la obtención de dichas leyes.
 
-    \subsection{Rango}
+    \paragraph{}
+    La formula que se utilizará para aplicar las propiedades de combinatoria para la obtención de las leyes de probabilidad será la de \emph{permutaciones con repetición} de $n$ elementos con $k$ grupos de $n_i$ elementos para cada grupo, que se muestra en la ecuación \eqref{eq:repeat_permutations}.
 
+    \begin{equation}
+    \label{eq:repeat_permutations}
+      Pr(n, n_1, ..., n_i,...,n_k) = \frac{n!}{n_1! *... *n_i! * ... * n_k!}
+    \end{equation}
+
+    \paragraph{}
+    En este caso se trabaja con el conjunto de \emph{v.a.i.i.d.} $X_i \sim U\{1,2,3\} \quad \forall i  \in \{1,...,4\}$, cuyo número de combinaciones distintas se basa en \emph{variaciones con repetición} donde $n = 3$ y $k=4$ por lo que hay un total de $n^k = 3^4 = 81$ posibles combinaciones.
+
+    \subsection{Rango $R=X_{(4)}-X_{(1)}$ de $X_i \sim U\{1,2,3\} \quad \forall i  \in \{1,...,4\}$}
+
+      \paragraph{}
+      Para el caso del rango, lo primero que necesitaremos es rellenar la tabla \ref{table:joint_1_4}, en la cual se muestra la ley de probabilidad conjunta de las variables $X_{(1)},X_{(4)}$.
 
       \begin{table}[H]
         \centering
@@ -200,8 +213,11 @@
                             &  $\frac{1}{81}$ & $\frac{15}{81}$ &                 & 1
         \end{tabular}
         \caption{Ley de la distribución conjunta de $(X_{(1)},X_{(4)})$}
-        \label{}
+        \label{table:joint_1_4}
       \end{table}
+
+      \paragraph{}
+      A continuación se justifica la obtención de dicha tabla:
 
       \begin{align*}
         X_{(1)} = 1,X_{(4)} = 1 & \Rightarrow \frac{1}{81}\\
@@ -227,20 +243,24 @@
         &3333 \rightarrow 1 \\
       \end{align*}
 
+      \paragraph{}
+      Lo siguiente es contabilizar calcular la ley de probabilidad para el rango, la cual se ilustra en la tabla \ref{table:range}, que se ha obtenido mediante el conteo de casos que cumplen la propiedad de la transformación $R=X_{(4)} - X_{(1)}$.
+
 
       \begin{table}[H]
         \centering
         \begin{tabular}{ c | c c c |}
-          Valores       & 0             & 1             & 2 \\ \hline
-          Probabilidad  & $\frac{3}{81}$  & $\frac{28}{81}$ & $\frac{50}{81}$
+          $r_i$       & 0             & 1             & 2 \\ \hline
+          $P(R = r_i)$  & $\frac{3}{81}$  & $\frac{28}{81}$ & $\frac{50}{81}$
         \end{tabular}
         \caption{Ley del rango $R=X_{(4)} - X_{(1)}$}
-        \label{}
-
+        \label{table:range}
       \end{table}
 
-    \subsection{Mediana}
+    \subsection{Mediana $Me = \frac{X_{(2)} + X_{(3)}}{2}$ de $X_i \sim U\{1,2,3\} \quad \forall i  \in \{1,...,4\}$}
 
+      \paragraph{}
+      Para el caso de la mediana, lo primero que necesitaremos es rellenar la tabla \ref{table:joint_2_3}, en la cual se muestra la ley de probabilidad conjunta de las variables $X_{(2)},X_{(3)}$.
 
       \begin{table}[H]
         \centering
@@ -252,8 +272,11 @@
                             & $\frac{9}{81}$  & $\frac{27}{81}$ & $\frac{39}{81}$ & 1
         \end{tabular}
         \caption{Ley de la distribución conjunta de $X_{(2)},X_{(3)}$}
-        \label{}
+        \label{table:joint_2_3}
       \end{table}
+
+      \paragraph{}
+      A continuación se justifica la obtención de dicha tabla:
 
       \begin{align*}
         X_{(2)} = 1,X_{(3)} = 1 & \Rightarrow \frac{9}{81}\\
@@ -279,15 +302,17 @@
         &2333 \rightarrow \frac{4!}{3!1!} = 4 \\
       \end{align*}
 
+      \paragraph{}
+      Lo siguiente es contabilizar calcular la ley de probabilidad para la mediana, la cual se ilustra en la tabla \ref{table:median}, que se ha obtenido mediante el conteo de casos que cumplen la propiedad de la transformación $Me = \frac{X_{(2)}+X_{(3))}}{2}$.
 
       \begin{table}[H]
         \centering
         \begin{tabular}{ c | c c c c c|}
-          Valores       & 1               & $\frac{3}{2}$   & 2               & $\frac{5}{2}$   & 3               \\ \hline
-          Probabilidad  & $\frac{9}{81}$  & $\frac{18}{81}$ & $\frac{27}{81}$ & $\frac{18}{81}$ & $\frac{9}{81}$
+          $me_i$       & 1               & $\frac{3}{2}$   & 2               & $\frac{5}{2}$   & 3               \\ \hline
+          $P(Me = me_i)$  & $\frac{9}{81}$  & $\frac{18}{81}$ & $\frac{27}{81}$ & $\frac{18}{81}$ & $\frac{9}{81}$
         \end{tabular}
         \caption{Ley de la Mediana $Me = \frac{X_{(2)}+X_{(3))}}{2}$ }
-        \label{}
+        \label{table:median}
       \end{table}
   %-----------------------------
   %  Bibliographic references
